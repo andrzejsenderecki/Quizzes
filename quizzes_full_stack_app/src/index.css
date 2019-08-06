@@ -9,12 +9,5 @@
 body {
   font-family: 'Open Sans', sans-serif;
   background-color:#000046;
-  min-height: 140vh;
   width: 100vw;  
 }
-
-@media (min-width: 768px) {
-      body {
-          min-height: 100vh;
-      }
-} 

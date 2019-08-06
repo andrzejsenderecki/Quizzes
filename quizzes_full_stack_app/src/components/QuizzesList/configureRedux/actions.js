@@ -9,14 +9,14 @@ export function getQuizzes(data) {
   }
 }
 
-export const getQuiz = (data) => {
+export const getQuiz = data => {
   return {
     type: GET_QUIZ,
     payload: data
   }
 }
 
-export const getUsersAnswersAction = (data) => {
+export const getUsersAnswersAction = data => {
   return {
     type: GET_USERS_ANSWERS,
     payload: data

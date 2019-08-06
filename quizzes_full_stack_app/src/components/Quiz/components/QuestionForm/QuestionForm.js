@@ -6,11 +6,16 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
-  margin-top: 0;
+  margin: 0;
+  padding: 0 0 290px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+
+  @media(min-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const FormContainer = styled.form`

@@ -8,14 +8,14 @@ app.use(express.json());
 
 app.listen(port, err => {
   if (err) throw err
-  console.log(`> Ready On Server http://localhost:${port}`);
+  console.log(`> Ready On Server https://serwer1836721.home.pl:${port}`);
 });
 
 var dbConnection = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  database: ''
+  host: 'serwer1836721.home.pl',
+  user: '28519216_quizzes_db',
+  password: 'Andrew33879012!',
+  database: '28519216_quizzes_db'
 });
 
 dbConnection.connect((error) => {
@@ -46,10 +46,10 @@ app.get('/quiz/:id', (request, response) => {
 
 app.get('/result/quiz/:id', (request, response) => {
   const idParam = request.params.id;
-  const { goodAnswers, badAnswers, quizResult } = request.query;
-
+  const { goodAnswers, badAnswers, result } = request.query;
+  
   dbConnection.query(`
-    INSERT INTO answers(goodAnswers, badAnswers, result, quizId) VALUES ('${goodAnswers}','${badAnswers}','${quizResult}','${idParam}')`,
+    INSERT INTO answers(goodAnswers, badAnswers, result, quizId) VALUES ('${goodAnswers}','${badAnswers}','${result}','${idParam}')`,
   (error, data) => error ? 'Error connection' : response.send(data));
 });
 
