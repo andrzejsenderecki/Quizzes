@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "name": "quizzes-app",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": {"distDir": "build"}
+    },
+    {
+      "src": "/api/*.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "desc": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "headers": { "cache-control": "s-maxage=0" },
+      "dest": "/index.html" 
+    }
+  ]
+}
