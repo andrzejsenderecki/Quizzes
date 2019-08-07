@@ -80,7 +80,7 @@ const ResultText = styled.p`
 
 class Result extends React.Component {
   componentWillMount() {
-      this.checkQuizResult();
+    this.checkQuizResult();
   }
 
   componentDidMount() {
@@ -93,7 +93,7 @@ class Result extends React.Component {
     }
   }
 
-  othersUsersAnswers = (numberGoodAnswersCurrentUser) => {
+  othersUsersAnswers = numberGoodAnswersCurrentUser => {
     const { getUsersAnswersReducer, match } = this.props;
     let otherUsersAnswers;
     let allUsersQuizPassed = 0;
@@ -111,7 +111,7 @@ class Result extends React.Component {
     }
   
     if(otherUsersAnswers) {
-      otherUsersAnswers.map((answer) => {
+      otherUsersAnswers.map(answer => {
         const goodAnswersCount = answer.goodAnswers;
         
         answer.result === 1 ? allUsersQuizPassed += 1 : allUsersQuizFailed += 1;
@@ -204,7 +204,7 @@ class Result extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return state
 } 
 

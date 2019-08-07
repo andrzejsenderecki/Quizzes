@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 const ButtonStyle = styled.button`
   width: 60%;
-  height: 50px;
+  height: 45px;
+  margin-top: 10px;
   display: inline-block;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: #FFFFFF;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   text-decoration: none;
   background: #0770ab;
   border-radius: 7px;
@@ -20,6 +21,7 @@ const ButtonStyle = styled.button`
   @media(min-width: 768px) {
     width: 180px;
     height: 40px;
+    margin: 0;
     font-size: 17px;
     line-height: 40px;
     margin-let: 30px;

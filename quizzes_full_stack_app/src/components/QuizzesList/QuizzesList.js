@@ -74,7 +74,7 @@ const SubtitleB = styled.p`
   }
 `;
 
-const QuizzesList = (props) => {
+const QuizzesList = props => {
   const { quizzesListReducer, getOneTest } = props;
   const quizzes = quizzesListReducer.quizzes; 
 

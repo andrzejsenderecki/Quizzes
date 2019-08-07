@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 import styled from 'styled-components';
 
 const LinkStyle = styled(Link)`
-  width: 90%;
-  height: 60px;
+  width: 70%;
+  height: 45px;
   display: inline-block;
-  font-size: 25px;
+  font-size: 18px;
   font-weight: 600;
   color: #FFFFFF;
   text-align: center;
-  line-height: 55px;
+  line-height: 40px;
   text-decoration: none;
   background: #0770ab;
   border-radius: 7px;

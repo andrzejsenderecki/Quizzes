@@ -76,22 +76,17 @@ const Answer = styled.div`
     font-size: 25px;
     font-weight: 600;
     color: #0770ab;
+    margin-bottom: 20px;
   }
 
   @media(min-width: 768px) {
     margin: 30px 40px;
-
-    span {
-      margin-top: 5px;
-      font-size: 25px;
-    }
   }
 
   @media(min-width: 1500px) {
     margin: 50px 60px;
 
     span {
-      margin-top: 14px;
       font-size: 35px;
     }
   }
@@ -99,8 +94,6 @@ const Answer = styled.div`
 
 const RadioButtonLabel = styled.label`
   position: absolute;
-  top: 25%;
-  left: 4px;
   width: 48px;
   height: 48px;
   background: white;
@@ -158,7 +151,7 @@ const RadioButton = styled.input`
   @media(min-width: 768px) {
     width: 32px;
     height: 32px;
-    margin-right: 15px;
+    margin-right: 10px;
 
     &:hover ~ ${RadioButtonLabel} {
       &::after {
@@ -169,11 +162,11 @@ const RadioButton = styled.input`
     }
 
     &:checked + ${RadioButtonLabel} {
-        &::after {
-            width: 16px;
-            height: 16px;
-            margin: 8px;
-        }
+      &::after {
+        width: 16px;
+        height: 16px;
+        margin: 8px;
+      }
     }
   }
 
@@ -191,13 +184,12 @@ const RadioButton = styled.input`
     }
 
     &:checked + ${RadioButtonLabel} {
-        &::after {
-            width: 22px;
-            height: 22px;
-            margin: 11px;
-        }
+      &::after {
+        width: 22px;
+        height: 22px;
+        margin: 11px;
+      }
     }
-  }
   }
 `;
 
@@ -229,9 +221,9 @@ class QuestionForm extends React.Component {
   checkedAnswer = () => {
     const { answerReducer } = this.props;
 
-    const answerToChecked = answerReducer ? Object.values(answerReducer).map((answer,index) => {
-      return answer.answer_id === index ? answer.answer : null;
-    }) : ''
+    const answerToChecked = answerReducer && Object.values(answerReducer).map((answer,index) => {
+      return answer.answer_id === index && answer.answer;
+    });
 
     return answerToChecked;
   }
@@ -248,14 +240,14 @@ class QuestionForm extends React.Component {
   return (
       <Container>
         <QuestionText>{question}</QuestionText >
-        {
-          <FormContainer>
-            <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_a} checked={answerToChecked[questionId] === answer_a} /><RadioButtonLabel /><span>{answer_a}</span></Answer>
-            <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_b} checked={answerToChecked[questionId] === answer_b} /><RadioButtonLabel /><span>{answer_b}</span></Answer>
-            <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_c} checked={answerToChecked[questionId] === answer_c} /><RadioButtonLabel /><span>{answer_c}</span></Answer>
-            <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_d} checked={answerToChecked[questionId] === answer_d} /><RadioButtonLabel /><span>{answer_d}</span></Answer>
-          </FormContainer>
-        }
+          {
+            <FormContainer>
+              <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_a} checked={answerToChecked[questionId] === answer_a} /><RadioButtonLabel /><span>{answer_a}</span></Answer>
+              <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_b} checked={answerToChecked[questionId] === answer_b} /><RadioButtonLabel /><span>{answer_b}</span></Answer>
+              <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_c} checked={answerToChecked[questionId] === answer_c} /><RadioButtonLabel /><span>{answer_c}</span></Answer>
+              <Answer><RadioButton type='radio' onClick={(e) => this.handleChangeOption(e, questionId, quizId)} value={answer_d} checked={answerToChecked[questionId] === answer_d} /><RadioButtonLabel /><span>{answer_d}</span></Answer>
+            </FormContainer>
+          }
       </Container>
     )
   }

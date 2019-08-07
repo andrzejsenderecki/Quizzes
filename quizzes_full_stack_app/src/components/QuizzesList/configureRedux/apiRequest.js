@@ -13,14 +13,14 @@ export const getAllTests = () =>
     dispatch(getQuizzes(quizzes));
   }
 
-export const apiRequestTest = async (quizId) => {
+export const apiRequestTest = async quizId => {
   const response = await fetch(`https://quizzes-api.andrewsenderecki.now.sh/quiz/${quizId}`, { method: 'GET' });
   const json = await response.json();
 
   return json;
 }
 
-export const getOneTest = (quizId) => 
+export const getOneTest = quizId => 
   async(dispatch) => {
     const quiz = await apiRequestTest(quizId);
     dispatch(getQuiz(quiz));

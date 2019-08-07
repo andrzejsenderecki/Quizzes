@@ -83,11 +83,10 @@ const ArrowRight = styled.div`
   } 
 `;
 
-
 const QuestionButton = ({ textButton, arrowLeft, ...rest }) => 
   <Button {...rest} >
     {
-        arrowLeft ? <ArrowLeft /> : <ArrowRight />
+      arrowLeft ? <ArrowLeft /> : <ArrowRight />
     }
   </Button>
 

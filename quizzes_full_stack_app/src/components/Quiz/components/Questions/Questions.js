@@ -13,7 +13,7 @@ import { textExitQuizButton } from '../../../../constants';
 const Container = styled.div`
   display: flex;
   justify-content:center;
-  align-items: flex-end;
+  align-items: center;
   width: 100%;
 `;
 
@@ -110,7 +110,7 @@ class Questions extends React.Component {
     window.onpopstate = this.onBackButtonEvent;
     
     this.setState({
-        questionsCount: quizReducer && quizReducer.quiz  ? quizReducer.quiz.length : ''
+      questionsCount: quizReducer && quizReducer.quiz  ? quizReducer.quiz.length : ''
     });
   }    
 
@@ -120,9 +120,9 @@ class Questions extends React.Component {
     let { questionNumber } = this.state;
 
     if(questionNumber < questionsCount) {
-        this.setState({
-            questionNumber: questionNumber += 1
-        });
+      this.setState({
+        questionNumber: questionNumber += 1
+      });
     }
   }
 
@@ -130,9 +130,9 @@ class Questions extends React.Component {
     let { questionNumber } = this.state;
 
     if(questionNumber > 0) {
-        this.setState({
-            questionNumber: questionNumber -= 1
-        });
+      this.setState({
+        questionNumber: questionNumber -= 1
+      });
     }
   }
 
@@ -154,10 +154,10 @@ class Questions extends React.Component {
             isQuizReducer && isQuizReducer.length ? isQuizReducer.map((question, index) => {
               return questionNumber === index &&
                 <QuestionForm
-                    quizId={quizId}
-                    questionId={index}
-                    quizQuestion={question}
-                    key={index}
+                  quizId={quizId}
+                  questionId={index}
+                  quizQuestion={question}
+                  key={index}
                 />
             }) 
             : <Loading />
@@ -171,13 +171,23 @@ class Questions extends React.Component {
         </Media>
         <BottomPanelContainer>
           <Media query="(max-width: 767px)">
-            <Container>
-              <QuestionButton onClick={this.prevQuestion} arrowLeft={true} />
-              <QuestionButton onClick={this.nextQuestion} arrowLeft={false} />
-            </Container>
+            <>
+              <Container>
+                <QuestionButton onClick={this.prevQuestion} arrowLeft={true} />
+                <QuestionButton onClick={this.nextQuestion} arrowLeft={false} />
+              </Container>
+              <Container>
+                <QuestionCount>Pytanie <span>{questionNumber+1}</span> z <span>{questionsCount}</span></QuestionCount>
+                <Timer quiz_id={quizId} startTime={90} history={quizData.history} />
+              </Container>
+            </>
           </Media>
-          <QuestionCount>Pytanie <span>{questionNumber+1}</span> z <span>{questionsCount}</span></QuestionCount>
-          <Timer quiz_id={quizId} startTime={90} history={quizData.history} />
+          <Media query="(min-width: 768px)">
+            <>
+              <QuestionCount>Pytanie <span>{questionNumber+1}</span> z <span>{questionsCount}</span></QuestionCount>
+              <Timer quiz_id={quizId} startTime={90} history={quizData.history} />
+            </>  
+          </Media>
           <BasicButton onClick={this.showModal} textLink={textExitQuizButton} />
         </BottomPanelContainer>
       </>     

@@ -26,13 +26,11 @@ const LogoText = styled.h1`
   }
 
   @media(min-width: 1500px) {
-    & {
-      margin: 0;
-      font-size: 160px;
+    margin: 0;
+    font-size: 160px;
       
-      span {
-        font-size: 240px;
-      }
+    span {
+      font-size: 240px;
     }
   }
 `;
