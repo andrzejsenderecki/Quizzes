@@ -10,10 +10,10 @@ class QuestionForm extends React.Component {
   }
 
   componentDidUpdate() {
-    const { answerReducer, quizReducer, getAnswer } = this.props;
+    const { currentQuizAnswers, quizData, getAnswer } = this.props;
 
-    if(answerReducer.length===0) {
-        quizReducer.quiz.map((answer,index) => getAnswer('',index));
+    if(currentQuizAnswers.length===0) {
+        quizData.quiz.map((answer,index) => getAnswer('',index));
     } 
   }
 
@@ -30,9 +30,9 @@ class QuestionForm extends React.Component {
   }
 
   checkedAnswer = () => {
-    const { answerReducer } = this.props;
+    const { currentQuizAnswers } = this.props;
 
-    const answerToChecked = answerReducer && Object.values(answerReducer).map((answer,index) => {
+    const answerToChecked = currentQuizAnswers && Object.values(currentQuizAnswers).map((answer,index) => {
       return answer.answer_id === index && answer.answer;
     });
 
@@ -40,12 +40,12 @@ class QuestionForm extends React.Component {
   }
 
   render() {
-  const { questionId, quizId, quizQuestion, answerReducer, quizReducer, getAnswer } = this.props;
+  const { questionId, quizId, quizQuestion, currentQuizAnswers, quizData, getAnswer } = this.props;
   const { question, answer_a, answer_b, answer_c, answer_d } = quizQuestion;
   const answerToChecked = this.checkedAnswer(quizId);
 
-  if(answerReducer.length===0) {
-      quizReducer.quiz.map((answer,index) => getAnswer('', index));
+  if(currentQuizAnswers.length===0) {
+      quizData.currentQuizQuestions.map((answer,index) => getAnswer('', index));
   } 
 
   return (

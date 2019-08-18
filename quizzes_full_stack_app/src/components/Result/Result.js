@@ -22,13 +22,14 @@ class Result extends React.Component {
   }
 
   othersUsersAnswers = numberGoodAnswersCurrentUser => {
-    const { getUsersAnswersReducer, match } = this.props;
+    const { quizData, match } = this.props;
+    const usersAnswers = quizData.otherUsersAnswersFromAllQuizzes;
     let otherUsersAnswers;
     let allUsersQuizPassed = 0;
     let allUsersQuizFailed = 0;
 
-    if(getUsersAnswersReducer && getUsersAnswersReducer.usersAnswers) {
-      otherUsersAnswers = getUsersAnswersReducer.usersAnswers.filter(answer => {
+    if(usersAnswers) {
+      otherUsersAnswers = usersAnswers.filter(answer => {
       return answer.quizId === Number(match.params.id);
     })};
 
@@ -77,14 +78,14 @@ class Result extends React.Component {
   }
 
   checkQuizResult = () => {
-    const { quizReducer, answerReducer } = this.props;
+    const { quizData, currentQuizAnswers } = this.props;
     let goodAnswers = [];
     let badAnswers = [];
     let quizPassed;
-    const requiredCorrectAnswers = quizReducer && quizReducer.quiz ? quizReducer.quiz.length * 0.5 : '';
+    const requiredCorrectAnswers = quizData && quizData.currentQuizQuestions ? quizData.currentQuizQuestions.length * 0.5 : '';
 
-    Object.values(answerReducer).map((answer,index) => {
-      return answer.answer === quizReducer.quiz[index].correct_answer ? goodAnswers.push(answer) : badAnswers.push(answer);
+    Object.values(currentQuizAnswers).map((answer,index) => {
+      return answer.answer === quizData.currentQuizQuestions[index].correct_answer ? goodAnswers.push(answer) : badAnswers.push(answer);
     });
     
     quizPassed = goodAnswers.length >= requiredCorrectAnswers ? true : false;
@@ -99,7 +100,7 @@ class Result extends React.Component {
   }
 
   render() {
-    const { quizReducer } = this.props;
+    const { quizData } = this.props;
     const { goodAnswers, badAnswers, quizPassed, allUsersQuizPassed, allUsersQuizFailed, betterAndWorstUsers } = this.state;
     
     return (
@@ -108,7 +109,7 @@ class Result extends React.Component {
           <HeaderStyled>Wynik <span>quizu</span></HeaderStyled>
         </ContainerStyled>
         <ContainerStyled>
-          <ResultItemStyled>Ilość pytań: <span>{quizReducer.quiz.length}</span></ResultItemStyled>
+          <ResultItemStyled>Ilość pytań: <span>{quizData.currentQuizQuestions.length}</span></ResultItemStyled>
           <ResultItemStyled>Dobre odpowiedzi: <span>{goodAnswers.length}</span></ResultItemStyled>
           <ResultItemStyled>Błędne odpowiedzi: <span>{badAnswers.length}</span></ResultItemStyled>
         </ContainerStyled>

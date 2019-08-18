@@ -11,7 +11,7 @@ const Quiz = props => {
   const isQuizWasSolvedCookie = cookies.get(`quizWasSolved_${quizWasSolvedId}`);
 
   return (    
-    isQuizWasSolvedCookie && isQuizWasSolvedCookie === quizWasSolvedId ? <QuizWasSolved history={history} /> : <Questions quizData={props} />   
+    isQuizWasSolvedCookie && isQuizWasSolvedCookie === quizWasSolvedId ? <QuizWasSolved history={history} /> : <Questions {...props} />   
   )
 }
 

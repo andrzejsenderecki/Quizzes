@@ -24,21 +24,21 @@ class Questions extends React.Component {
 
   onBackButtonEvent = e => {
     e.preventDefault();
-    this.props.quizData.history.push(`/result/quiz/${this.props.quizData.match.params.id}`);
+    this.props.history.push(`/result/quiz/${this.props.match.params.id}`);
   }
 
   componentDidMount() {
-    const { quizReducer } = this.props.quizData;
+    const { quizData } = this.props.quizData;
     window.onpopstate = this.onBackButtonEvent;
     
     this.setState({
-      questionsCount: quizReducer && quizReducer.quiz  ? quizReducer.quiz.length : ''
+      questionsCount: quizData && quizData.currentQuiz  ? quizData.currentQuiz.length : ''
     });
   }    
 
   nextQuestion = () => {
     const { quizData } = this.props;
-    const questionsCount = quizData.quizReducer.quiz.length-1;
+    const questionsCount = quizData.currentQuizQuestions.length-1;
     let { questionNumber } = this.state;
 
     if(questionNumber < questionsCount) {
@@ -59,11 +59,11 @@ class Questions extends React.Component {
   }
 
   render() {
-    const { quizData } = this.props;
+    const { quizData, match } = this.props;
     const { questionNumber } = this.state;
-    const isQuizReducer = quizData.quizReducer.quiz;
-    const quizId = quizData.match.params.id;
-    const questionsCount = quizData.quizReducer.quiz ? quizData.quizReducer.quiz.length : '';
+    const isQuiz = quizData.currentQuizQuestions;
+    const quizId = match.params.id;
+    const questionsCount = quizData.currentQuizQuestions ? quizData.currentQuizQuestions.length : '';
 
     return (
       <>  
@@ -73,7 +73,7 @@ class Questions extends React.Component {
         </ContainerStyled>
         <ContainerStyled>
           {
-            isQuizReducer && isQuizReducer.length ? isQuizReducer.map((question, index) => {
+            isQuiz && isQuiz.length ? isQuiz.map((question, index) => {
               return questionNumber === index &&
                 <QuestionForm
                   quizId={quizId}

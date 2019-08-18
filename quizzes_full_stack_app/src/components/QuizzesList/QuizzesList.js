@@ -8,11 +8,11 @@ import Loading from '../Loading/Loading';
 import Logo from '../Logo/Logo';
 
 const QuizzesList = props => {
-  const { quizzesListReducer, getOneTest } = props;
-  const quizzes = quizzesListReducer.quizzes; 
+  const { quizData, getOneTest } = props;
+  const allQuizzesList = quizData.allQuizzesList; 
 
   useEffect(() => {
-    if(!quizzes) {
+    if(!allQuizzesList) {
         props.getAllTests();
         props.getAllUsersAnswers();
     }
@@ -24,7 +24,7 @@ const QuizzesList = props => {
       <SubtitleAStyled>90 sekund, <span>6 pytań</span></SubtitleAStyled>
       <SubtitleBStyled><span>Podejmij</span> wyzwanie!</SubtitleBStyled>
       <ButtonContainerStyled>
-        { quizzes ? quizzes.map(quiz =>
+        { allQuizzesList ? allQuizzesList.map(quiz =>
           <BasicLink onClick={() => getOneTest(quiz.id)} to={`/quiz/${quiz.id}`} key={quiz.id} textLink={quiz.name} />
           ) : <Loading />
         }
@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 QuizzesList.propTypes = {
-    quizzesListReducer: PropTypes.object,
+    quizData: PropTypes.object,
     getOneTest: PropTypes.func
   };   
 

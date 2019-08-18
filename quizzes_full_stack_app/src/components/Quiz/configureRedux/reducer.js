@@ -8,7 +8,7 @@ export const getAnswer = (answer,answer_id) => {
   }
 }
 
-export const answerReducer = (state = [], action) => {
+export const currentQuizAnswers = (state = [], action) => {
   const answer = `answer_${action.answer_id}`;
 
   switch(action.type) {
