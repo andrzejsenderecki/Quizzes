@@ -1,82 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import styled from 'styled-components';
+import { ContainerStyled, HeaderStyled, ResultItemStyled, ResultTextStyled } from './ResultStyled';
 import { withCookies } from 'react-cookie';
 import BasicLink from '../BasicLink/BasicLink';
 import { textHomeLink } from '../../constants';
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
-
-  a {
-      margin: 40px;
-  }
-`;
-
-const Header = styled.h1`
-  margin: 20px;
-  font-size: 60px;
-  color: #FFFFFF;
-  font-weight: 700; 
-  text-align: center;
-
-  span {
-    color: #0770ab;
-  }
-
-  @media(min-width: 1500px) {
-    margin: 60px 0 40px 0;
-    font-size: 80px;
-  }  
-`;
-
-const ResultItem = styled.p`
-  margin: 15px;
-  font-size: 25px;
-  font-weight: 500;
-  text-align: center;
-  color: #0770ab;
-
-  span {
-    font-size: 35px;
-    font-weight: 600;
-    color: #FFFFFF;
-  }
-
-  @media(min-width: 768px) {
-    font-size: 20px;
-
-    span {
-      font-size: 30px;
-    }
-  }  
-
-  @media(min-width: 1500px) {
-    font-size: 30px;
-
-    span {
-      font-size: 40px;
-    }
-  }  
-`;
-
-const ResultText = styled.p`
-  margin: 30px 15px;
-  font-size: 40px;
-  font-weight: 600;
-  text-align: center;
-  color: #FFFFFF;
-
-  @media(min-width: 1500px) {
-    font-size: 60px;
-  }
-`;
 
 class Result extends React.Component {
   componentWillMount() {
@@ -176,29 +104,29 @@ class Result extends React.Component {
     
     return (
       <>
-        <Container>
-          <Header>Wynik <span>quizu</span></Header>
-        </Container>
-        <Container>
-          <ResultItem>Ilość pytań: <span>{quizReducer.quiz.length}</span></ResultItem>
-          <ResultItem>Dobre odpowiedzi: <span>{goodAnswers.length}</span></ResultItem>
-          <ResultItem>Błędne odpowiedzi: <span>{badAnswers.length}</span></ResultItem>
-        </Container>
-        <Container>    
-          <ResultText>Quiz {quizPassed ? 'zaliczony! Brawo!' : 'niezaliczony. Spróbuj ponownie za jakiś czas.'}</ResultText>
-        </Container>
-        <Container>
-          <ResultItem>Osoby które zaliczyły quiz: <span>{allUsersQuizPassed}</span></ResultItem>
-          <ResultItem>Osoby które niezaliczyły quizu: <span>{allUsersQuizFailed}</span></ResultItem>
-        </Container>
-        <Container>
-          <ResultItem>Ilość osób z lepszym wynikiem od Twojego: <span>{betterAndWorstUsers.betterUsers}</span></ResultItem>
-          <ResultItem>Ilość osób z takim samym wynikiem jak Twój: <span>{betterAndWorstUsers.sameUsers}</span></ResultItem>
-          <ResultItem>Ilość osób z gorszym wynikiem od Twojego: <span>{betterAndWorstUsers.worstUsers}</span></ResultItem>
-        </Container>
-        <Container>
+        <ContainerStyled>
+          <HeaderStyled>Wynik <span>quizu</span></HeaderStyled>
+        </ContainerStyled>
+        <ContainerStyled>
+          <ResultItemStyled>Ilość pytań: <span>{quizReducer.quiz.length}</span></ResultItemStyled>
+          <ResultItemStyled>Dobre odpowiedzi: <span>{goodAnswers.length}</span></ResultItemStyled>
+          <ResultItemStyled>Błędne odpowiedzi: <span>{badAnswers.length}</span></ResultItemStyled>
+        </ContainerStyled>
+        <ContainerStyled>    
+          <ResultTextStyled>Quiz {quizPassed ? 'zaliczony! Brawo!' : 'niezaliczony. Spróbuj ponownie za jakiś czas.'}</ResultTextStyled>
+        </ContainerStyled>
+        <ContainerStyled>
+          <ResultItemStyled>Osoby które zaliczyły quiz: <span>{allUsersQuizPassed}</span></ResultItemStyled>
+          <ResultItemStyled>Osoby które niezaliczyły quizu: <span>{allUsersQuizFailed}</span></ResultItemStyled>
+        </ContainerStyled>
+        <ContainerStyled>
+          <ResultItemStyled>Ilość osób z lepszym wynikiem od Twojego: <span>{betterAndWorstUsers.betterUsers}</span></ResultItemStyled>
+          <ResultItemStyled>Ilość osób z takim samym wynikiem jak Twój: <span>{betterAndWorstUsers.sameUsers}</span></ResultItemStyled>
+          <ResultItemStyled>Ilość osób z gorszym wynikiem od Twojego: <span>{betterAndWorstUsers.worstUsers}</span></ResultItemStyled>
+        </ContainerStyled>
+        <ContainerStyled>
           <BasicLink textLink={textHomeLink} to={`/`} />
-        </Container>
+        </ContainerStyled>
       </>    
     )
   }
