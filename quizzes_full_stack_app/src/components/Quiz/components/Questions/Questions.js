@@ -59,7 +59,7 @@ class Questions extends React.Component {
   }
 
   render() {
-    const { quizData, match } = this.props;
+    const { quizData, match, history } = this.props;
     const { questionNumber } = this.state;
     const isQuiz = quizData.currentQuizQuestions;
     const quizId = match.params.id;
@@ -100,14 +100,14 @@ class Questions extends React.Component {
               </ContainerStyled>
               <ContainerStyled>
                 <QuestionCountStyled>Pytanie <span>{questionNumber+1}</span> z <span>{questionsCount}</span></QuestionCountStyled>
-                <Timer quiz_id={quizId} startTime={90} history={quizData.history} />
+                <Timer quiz_id={quizId} startTime={90} history={history} />
               </ContainerStyled>
             </>
           </Media>
           <Media query="(min-width: 768px)">
             <>
               <QuestionCountStyled>Pytanie <span>{questionNumber+1}</span> z <span>{questionsCount}</span></QuestionCountStyled>
-              <Timer quiz_id={quizId} startTime={90} history={quizData.history} />
+              <Timer quiz_id={quizId} startTime={90} history={history} />
             </>  
           </Media>
           <BasicButton onClick={this.showModal} textLink={textExitQuizButton} />
