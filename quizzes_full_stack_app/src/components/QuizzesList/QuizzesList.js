@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAllTests, getOneTest, getAllUsersAnswers } from './configureRedux/apiRequest';
+import { getAllTests, getOneTest, getAllUsersAnswers } from '../../configureStore/apiRequest';
 import { ContainerStyled, ButtonContainerStyled, SubtitleAStyled, SubtitleBStyled } from './QuizzesListStyled';
 import BasicLink from '../BasicLink/BasicLink';
 import Loading from '../Loading/Loading';

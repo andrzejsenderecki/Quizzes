@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAnswer } from '../../../QuizzesList/configureRedux/actions';
+import { getAnswer } from '../../../../configureStore/actions';
 import { ContainerStyled, FormContainerStyled, QuestionTextStyled, AnswerStyled, RadioButtonLabelStyled, RadioButtonStyled } from './QuestionFormStyled';
 
 class QuestionForm extends React.Component {
