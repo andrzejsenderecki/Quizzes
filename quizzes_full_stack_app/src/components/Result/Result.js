@@ -78,13 +78,13 @@ class Result extends React.Component {
   }
 
   checkQuizResult = () => {
-    const { quizData, currentQuizAnswers } = this.props;
+    const { quizData } = this.props;
     let goodAnswers = [];
     let badAnswers = [];
     let quizPassed;
     const requiredCorrectAnswers = quizData && quizData.currentQuizQuestions ? quizData.currentQuizQuestions.length * 0.5 : '';
 
-    Object.values(currentQuizAnswers).map((answer,index) => {
+    Object.values(quizData.currentQuizAnswers).map((answer,index) => {
       return answer.answer === quizData.currentQuizQuestions[index].correct_answer ? goodAnswers.push(answer) : badAnswers.push(answer);
     });
     

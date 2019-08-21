@@ -12,13 +12,13 @@ import { textExitQuizButton } from '../../../../constants';
 
 class Questions extends React.Component {
   state = {
-      questionNumber: 0,
-      modalOpen: false
+    questionNumber: 0,
+    modalOpen: false
   }
   
   showModal = () => {
     this.setState({
-        modalOpen: !this.state.modalOpen
+      modalOpen: !this.state.modalOpen
     });
   }
 
@@ -61,7 +61,7 @@ class Questions extends React.Component {
   render() {
     const { quizData, match, history } = this.props;
     const { questionNumber } = this.state;
-    const isQuiz = quizData.currentQuizQuestions;
+    const quiz = quizData.currentQuizQuestions;
     const quizId = match.params.id;
     const questionsCount = quizData.currentQuizQuestions ? quizData.currentQuizQuestions.length : '';
 
@@ -73,7 +73,7 @@ class Questions extends React.Component {
         </ContainerStyled>
         <ContainerStyled>
           {
-            isQuiz && isQuiz.length ? isQuiz.map((question, index) => {
+            quiz && quiz.length ? quiz.map((question, index) => {
               return questionNumber === index &&
                 <QuestionForm
                   quizId={quizId}

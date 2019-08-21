@@ -14,7 +14,7 @@ const QuizzesList = props => {
   useEffect(() => {
     if(!allQuizzesList) {
         props.getAllTests();
-        props.getAllUsersAnswers();
+        props.getAllUsersAnswers()
     }
   });
 

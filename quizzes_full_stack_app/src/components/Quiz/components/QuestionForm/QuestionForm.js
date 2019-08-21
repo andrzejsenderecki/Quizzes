@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAnswer } from '../../configureRedux/reducer';
+import { getAnswer } from '../../../QuizzesList/configureRedux/actions';
 import { ContainerStyled, FormContainerStyled, QuestionTextStyled, AnswerStyled, RadioButtonLabelStyled, RadioButtonStyled } from './QuestionFormStyled';
 
 class QuestionForm extends React.Component {
@@ -10,13 +10,13 @@ class QuestionForm extends React.Component {
   }
 
   componentDidUpdate() {
-    const { currentQuizAnswers, quizData, getAnswer } = this.props;
+    const { quizData, getAnswer } = this.props;
 
-    if(currentQuizAnswers.length===0) {
-        quizData.quiz.map((answer,index) => getAnswer('',index));
+    if(quizData.currentQuizAnswers.length===0) {
+        quizData.currentQuizQuestions.map((answer,index) => getAnswer('',index));
     } 
   }
-
+1
   handleChangeOption = (e, answerId, quizId) => {
     const { getAnswer } = this.props;
     const answer = e.target.value;
@@ -30,7 +30,7 @@ class QuestionForm extends React.Component {
   }
 
   checkedAnswer = () => {
-    const { currentQuizAnswers } = this.props;
+    const { currentQuizAnswers } = this.props.quizData;
 
     const answerToChecked = currentQuizAnswers && Object.values(currentQuizAnswers).map((answer,index) => {
       return answer.answer_id === index && answer.answer;
@@ -40,12 +40,12 @@ class QuestionForm extends React.Component {
   }
 
   render() {
-  const { questionId, quizId, quizQuestion, currentQuizAnswers, quizData, getAnswer } = this.props;
+  const { questionId, quizId, quizQuestion, quizData, getAnswer } = this.props;
   const { question, answer_a, answer_b, answer_c, answer_d } = quizQuestion;
   const answerToChecked = this.checkedAnswer(quizId);
 
-  if(currentQuizAnswers.length===0) {
-      quizData.currentQuizQuestions.map((answer,index) => getAnswer('', index));
+  if(quizData.currentQuizAnswers.length===0) {
+    quizData.currentQuizQuestions.map((answer,index) => getAnswer('', index));
   } 
 
   return (
