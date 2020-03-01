@@ -8,14 +8,14 @@ app.use(express.json());
 
 app.listen(port, err => {
   if (err) throw err
-  
+  console.log(`> Ready On Server https://serwer1836721.home.pl:${port}`);
 });
 
 var dbConnection = mysql.createConnection({
-  host: '',
-  user: '',
-  password: '',
-  database: ''
+  host: 'serwer1836721.home.pl',
+  user: '28519216_quizzes_db',
+  password: 'Andrew33879012!',
+  database: '28519216_quizzes_db'
 });
 
 dbConnection.connect((error) => {
